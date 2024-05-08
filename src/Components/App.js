@@ -2,28 +2,22 @@ import './App.css';
 import Header from './Header'
 import AddContact from './AddContact'
 import ContactList from './ContactList'
+import { useState } from 'react';
 
 function App() {
-  const contacts =
-    [
-      {
-        id:1,
-        name: "Nishant",
-        email: "nishan@gmail.com",
-        phoneno: "9876543210"
-      },
-      {
-        id:2,
-        name: "Nishita",
-        email: "nishita@gmail.com",
-        phoneno: "9876543211"
-      }
-    ];
+  let [Mode, SetMode] = useState("light");
+  let [contactList, SetContactList] = useState([]);
+
+  function handleContactList(Name,Phone,Email){
+    let NewContactList = contactList.concat([{name:Name, email:Email, phoneno:Phone}])
+    SetContactList(NewContactList);
+  };
+
   return (
     <div>
-    <Header/>
-    <AddContact/>
-    <ContactList contacts={contacts}/>
+      <Header/>
+      <AddContact  handleContactList={handleContactList}/>
+      <ContactList contacts={contactList}/>
     </div>
   );
 }
