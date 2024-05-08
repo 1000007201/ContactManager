@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { check_all_params } from "../Utils/validators";
 
 const AddContact = (props) => {
 
@@ -25,16 +26,14 @@ const AddContact = (props) => {
 	};
 
 	function handleSubmit(event){
-		console.log("Event is running")
 		event.preventDefault();
 		let Name  = ParamsState.name
 		let Phone = ParamsState.phoneno
 		let Email = ParamsState.email
-		let Value = props.handleContactList
-		console.log(`Value of prop: ${typeof(Value)}`)
-		props.handleContactList(Name, Phone, Email)
-		SetParams({name: "", phoneno: "", email: ""})
-		console.log(`Name: ${Name} PhoneNumber: ${Phone}`)
+		if(check_all_params(Name, Phone, Email)){
+			props.handleContactList(Name, Phone, Email)
+			SetParams({name: "", phoneno: "", email: ""})
+		}
 	};
 
 	return (
