@@ -2,9 +2,12 @@ import React from "react";
 import ContactCard from "./ContactCard";
 
 const ContactList = (props) => {
-	// var Contacts = props.contacts;
+	// function deleteContact(id){
+	// 	props.deleteContact(id);
+	// };
+
 	const ContactCards = props.contacts.map((SingleContact)=>
-		<ContactCard contact={SingleContact}></ContactCard>);
+		<ContactCard contact={SingleContact} deleteContact={(id)=>{props.deleteContact(id)}}></ContactCard>);
 	return (
 		<div className="contact-list-container">
 			{ContactCards}
